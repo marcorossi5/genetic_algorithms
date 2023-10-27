@@ -173,5 +173,5 @@ if __name__ == "__main__":
     van_volume = parser.parse_args().van_volume
     assert (
         MIN_VAN_VOLUME <= van_volume <= MAX_VAN_VOLUME
-    ), f"The van free space value should be in the [1;5] range, got {van_volume}"
+    ), f"The van free space value should be in the [{MIN_VAN_VOLUME};{MAX_VAN_VOLUME}] range, got {van_volume}"
     main(van_volume)
