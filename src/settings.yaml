@@ -3,7 +3,7 @@ data_path: ./data/products.xlsx
 output_img: ./assets/fitness_vs_generation.png
 
 # pygad settings
-num_generations: 5000
+num_generations: 10000
 num_parents_mating: 10
 sol_per_pop: 20
 gene_type: int
@@ -13,3 +13,4 @@ keep_parents: 1
 crossover_type: single_point
 mutation_type: random
 mutation_percent_genes: 10
+random_seed: 42

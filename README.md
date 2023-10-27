@@ -48,18 +48,19 @@ Tho following code block shows an example output of the program:
 (gad) $ ./start.sh 3.5
 Saved fitness vs generation figure at ./assets/fitness_vs_generation.png
 Best solution:
-Predicted solution occupied space: 3.439
-Predicted total value: 53506.540
+Predicted solution occupied space: 3.475
+Predicted total value: 56730.740
 Predicted output based on the best solution:
        Product  Picked
-0  Microwave B       5
-1  Microwave C       5
-2        TV 42       4
-3  Microwave A       3
-4   Notebook A       3
-5        TV 50       3
-6        TV 55       3
-7   Cell phone       2
+0        TV 42       5
+1  Microwave A       4
+2   Notebook A       4
+3        TV 50       4
+4  Microwave C       3
+5   Cell phone       2
+6  Microwave B       2
+7   Notebook C       1
+8        TV 55       1
 ```
 
 Additionally, the program saves a plot describing how the best fitness changes
@@ -71,5 +72,8 @@ with the different generations of the genetic algorithm, like the one below
 
 The model's hyperparameters can be tuned modifying the values in the `src/settings.yaml`
 configuration file.
+
+:warning: The settings file contains a seed value to ensure experiments
+reproducibility. Set it to `null` to allow output randomness.
 
 Feel free to experiment around by changing the values of the algorithm.

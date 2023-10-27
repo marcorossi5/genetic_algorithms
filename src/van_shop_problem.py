@@ -96,6 +96,7 @@ def run_genetic_algorithm(config_dict: Dict, data_dict: Dict) -> pygad.GA:
         crossover_type=config_dict["crossover_type"],
         mutation_type=config_dict["mutation_type"],
         mutation_percent_genes=config_dict["mutation_percent_genes"],
+        random_seed=config_dict["random_seed"],
     )
 
     # run algorithm
