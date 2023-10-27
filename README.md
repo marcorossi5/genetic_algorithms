@@ -42,6 +42,26 @@ The allowed values for this parameter are the range `[1,5]`.
 The program shows as output the list of products and their picked quantity to be
 loaded on the van to maximize the transported value.
 
+Tho following code block shows an example output of the program:
+
+```bash
+(gad) $ ./start.sh 3.5
+Saved fitness vs generation figure at ./assets/fitness_vs_generation.png
+Best solution:
+Predicted solution occupied space: 3.439
+Predicted total value: 53506.540
+Predicted output based on the best solution:
+       Product  Picked
+0  Microwave B       5
+1  Microwave C       5
+2        TV 42       4
+3  Microwave A       3
+4   Notebook A       3
+5        TV 50       3
+6        TV 55       3
+7   Cell phone       2
+```
+
 Additionally, the program saves a plot describing how the best fitness changes
 with the different generations of the genetic algorithm, like the one below
 
