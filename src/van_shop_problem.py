@@ -12,7 +12,6 @@ import argparse
 from typing import Callable, Dict
 
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import pygad
 import yaml
@@ -24,11 +23,11 @@ MAX_VAN_VOLUME = 5
 def load_config() -> Dict:
     """Load configuration from file."""
     with open("./src/settings.yaml", "r") as f:
-        config = yaml.safe_load(f)
-    return config
+        config_dict = yaml.safe_load(f)
+    return config_dict
 
 
-def read_xlsx(xlsx_path: str):
+def read_xlsx(xlsx_path: str) -> pd.DataFrame:
     return pd.read_excel(xlsx_path)
 
 
@@ -78,6 +77,33 @@ def define_fitness_function(data_dict: Dict, config_dict: Dict) -> Callable:
         return (solution * data_dict["prices_arr"]).sum()
 
     return fitness_func
+
+
+def run_genetic_algorithm(config_dict: Dict, data_dict: Dict) -> pygad.GA:
+    # define fitness function
+    fitness_func = define_fitness_function(data_dict, config_dict)
+
+    # genetic algorithm instance
+    ga = pygad.GA(
+        num_genes=data_dict["num_genes"],
+        num_generations=config_dict["num_generations"],
+        num_parents_mating=config_dict["num_parents_mating"],
+        fitness_func=fitness_func,
+        sol_per_pop=config_dict["sol_per_pop"],
+        gene_space=config_dict["gene_space"],
+        init_range_low=config_dict["init_range_low"],
+        init_range_high=config_dict["init_range_high"],
+        parent_selection_type=config_dict["parent_selection_type"],
+        keep_parents=config_dict["keep_parents"],
+        crossover_type=config_dict["crossover_type"],
+        mutation_type=config_dict["mutation_type"],
+        mutation_percent_genes=config_dict["mutation_percent_genes"],
+    )
+
+    # run algorithm
+    ga.run()
+
+    return ga
 
 
 def plot_fitness(ga: pygad.GA, output_path: str, van_volume: float):
@@ -130,39 +156,19 @@ def render_results(ga: pygad.GA, config_dict: Dict, data_dict: Dict):
 
 def main(van_volume: float):
     # load config
-    config = load_config()
+    config_dict = load_config()
 
     # update user defined settings
-    config["van_volume"] = van_volume
+    config_dict["van_volume"] = van_volume
 
     # load data
-    data_dict = load_data(config)
+    data_dict = load_data(config_dict)
 
-    # define fitness function
-    fitness_func = define_fitness_function(data_dict, config)
-
-    # genetic algorithm instance
-    ga = pygad.GA(
-        num_genes=data_dict["num_genes"],
-        num_generations=config["num_generations"],
-        num_parents_mating=config["num_parents_mating"],
-        fitness_func=fitness_func,
-        sol_per_pop=config["sol_per_pop"],
-        gene_space=config["gene_space"],
-        init_range_low=config["init_range_low"],
-        init_range_high=config["init_range_high"],
-        parent_selection_type=config["parent_selection_type"],
-        keep_parents=config["keep_parents"],
-        crossover_type=config["crossover_type"],
-        mutation_type=config["mutation_type"],
-        mutation_percent_genes=config["mutation_percent_genes"],
-    )
-
-    # run algorithm
-    ga.run()
+    # run genetic algorithm
+    ga = run_genetic_algorithm(config_dict, data_dict)
 
     # plot results
-    render_results(ga, config, data_dict)
+    render_results(ga, config_dict, data_dict)
 
 
 if __name__ == "__main__":
