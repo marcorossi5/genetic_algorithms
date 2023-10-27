@@ -91,8 +91,6 @@ def run_genetic_algorithm(config_dict: Dict, data_dict: Dict) -> pygad.GA:
         fitness_func=fitness_func,
         sol_per_pop=config_dict["sol_per_pop"],
         gene_space=config_dict["gene_space"],
-        init_range_low=config_dict["init_range_low"],
-        init_range_high=config_dict["init_range_high"],
         parent_selection_type=config_dict["parent_selection_type"],
         keep_parents=config_dict["keep_parents"],
         crossover_type=config_dict["crossover_type"],
