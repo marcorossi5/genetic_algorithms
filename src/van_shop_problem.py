@@ -139,16 +139,17 @@ def print_best_results(ga: pygad.GA, data_dict: Dict):
     # order cols for better display
     cols = ["Product", "Space", "Price", "Picked", "Quantity"]
     df_best_solution = df_best_solution[cols]
-
+    
+    print("Best solution:")
+    print(f"Predicted solution occupied space: {(df_best_solution['Space'] * df_best_solution['Picked']).sum():.3f}")
+    print(f"Predicted total value: {(df_best_solution['Price'] * df_best_solution['Picked']).sum():.3f}")
+   
+    
     print(f"Predicted output based on the best solution:")
-    print(df_best_solution)
-
-    print(f"Solution fitness:\n{df_best_solution.drop(columns='Product').sum(axis=0)}")
-
+    print(df_best_solution[["Product", "Picked"]])
 
 def render_results(ga: pygad.GA, config_dict: Dict, data_dict: Dict):
     plot_fitness(ga, config_dict["output_img"], config_dict["van_volume"])
-
     print_best_results(ga, data_dict)
 
 
