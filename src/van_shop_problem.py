@@ -116,7 +116,7 @@ def plot_fitness(ga: pygad.GA, output_path: str, van_volume: float):
     ax.set_ylabel("Fitness")
     ax.set_yscale("log")
     plt.savefig(output_path, bbox_inches="tight")
-    print(f"Saved fitness vs generation figura at {output_path}")
+    print(f"Saved fitness vs generation figure at {output_path}")
     plt.close()
 
 
