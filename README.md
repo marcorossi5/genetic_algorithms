@@ -42,25 +42,31 @@ The allowed values for this parameter are the range `[1,5]`.
 The program shows as output the list of products and their picked quantity to be
 loaded on the van to maximize the transported value.
 
-Tho following code block shows an example output of the program:
+The following code block shows an example output of the program (the van volume
+is set by default at 3.5):
 
 ```bash
-(gad) $ ./start.sh 3.5
+(gad) $ ./start.sh
 Saved fitness vs generation figure at ./assets/fitness_vs_generation.png
 Best solution:
-Predicted solution occupied space: 3.475
-Predicted total value: 56730.740
+Predicted solution occupied space: 3.500
+Predicted total value: 53466.480
 Predicted output based on the best solution:
-       Product  Picked
-0        TV 42       5
-1  Microwave A       4
-2   Notebook A       4
-3        TV 50       4
-4  Microwave C       3
-5   Cell phone       2
-6  Microwave B       2
-7   Notebook C       1
-8        TV 55       1
+           Product  Picked
+0   Refrigerator A       0
+1       Cell phone       1
+2            TV 55       3
+3            TV 50       4
+4            TV 42       4
+5       Notebook A       3
+6       Ventilator       0
+7      Microwave A       4
+8      Microwave B       0
+9      Microwave C       5
+10  Refrigerator B       0
+11  Refrigerator C       0
+12      Notebook B       0
+13      Notebook C       0
 ```
 
 Additionally, the program saves a plot describing how the best fitness changes
